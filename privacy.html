@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개인정보처리방침 | 우리회사 구내식당</title>
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0 auto; padding: 40px 20px 80px; max-width: 720px;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.75; color: #1D1B19; background: #FAF7F2; word-break: keep-all; }
+  header { border-bottom: 3px solid #FF6B35; padding-bottom: 18px; margin-bottom: 8px; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  .app { font-size: 14px; color: #6B645C; margin: 0; }
+  .intro { margin-top: 20px; }
+  h2 { font-size: 17px; margin: 36px 0 10px; color: #E5541F; }
+  p { margin: 0; white-space: pre-wrap; color: #33302C; }
+  nav { margin-top: 48px; padding-top: 18px; border-top: 1px solid #ECE6DD; font-size: 14px; }
+  nav a { margin-right: 16px; }
+  a { color: #E5541F; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<header>
+  <h1>개인정보처리방침</h1>
+  <p class="app">우리회사 구내식당</p>
+</header>
+
+<h2>1. 총칙</h2>
+<p>우리회사 구내식당(이하 &quot;본 앱&quot;)은 회사·기관 구내식당 식단 사진을 공유하는 서비스입니다. 운영자는 이용자의 개인정보를 소중히 다루며 「개인정보 보호법」 등 관련 법령을 지킵니다.
+
+식단 구경(오늘 피드·탐색·회사 페이지)은 로그인 없이 이용할 수 있습니다. 반응·댓글·관심 회사·식단 올리기는 Google 로그인이 필요하며, 이때 아래 2조의 정보가 운영자가 이용하는 클라우드 서버(Google Firebase)에 저장됩니다.</p>
+<h2>2. 수집하는 개인정보</h2>
+<p>• Google 로그인: 계정 식별자(UID), 이메일 주소, Google 계정 이름·프로필 사진 주소(로그인 서비스가 함께 제공하며 다른 이용자에게 공개하지 않습니다)
+• 닉네임: 이용자가 정한 2~10자 이름
+• 회사 인증: 회사 이메일 주소는 인증 메일을 보내는 데에만 쓰며, 인증이 끝나면 인증용 임시 계정을 바로 삭제합니다. 이메일 원문은 저장하지 않고, 같은 메일로 여러 계정이 인증하지 못하도록 되돌릴 수 없게 변환한 값(해시)만 저장합니다.
+• 회사 정보: 처음 등록할 때 입력한 회사 이름·지역·규모·업종
+• 식단 사진과 내용: 올린 사진, 끼니·코너·한마디. 사진 속 위치·기기 정보(EXIF)는 기기에서 지운 뒤 올립니다.
+• 활동 정보: 댓글, 반응, 관심 회사, 차단한 이용자, 신고 내용, 업로드·연속 기록 통계, 남용 방지를 위한 하루 이용 횟수
+• 알림: 알림을 보내기 위한 기기 토큰
+• 기기에만 저장: 광고를 보고 연 회사 목록과 만료 시각, 점심 알림 설정</p>
+<h2>3. 이용 목적</h2>
+<p>• 회원 식별, 회사 인증, 식단 공유와 탐색 기능 제공
+• AI 식판 평가(메뉴 인식·점수·한줄평·영양 추정)와 부적절한 사진·댓글 검사
+• 댓글·답글·관심 회사 새 식단 알림, 점심 알림
+• 신고 처리, 이용 제한 등 서비스 운영과 남용 방지</p>
+<h2>4. 다른 이용자에게 공개되는 범위</h2>
+<p>• 올린 사진, 끼니·코너·한마디, AI 평가 결과
+• &quot;회사 표시 이름 · 닉네임&quot; 형태의 작성자 표시. 닉네임 숨기기를 선택하면 &quot;익명&quot;으로 보입니다.
+• 회사 표시 이름은 인증한 직원이 5명이 되기 전까지 실명 대신 &quot;지역 · 업종 · 규모&quot;로만 보입니다.
+• 댓글과 반응 수
+실명, 이메일 주소, 회사 이메일 주소는 다른 이용자에게 공개하지 않습니다.</p>
+<h2>5. AI 처리</h2>
+<p>올린 사진과 댓글은 Google의 Gemini API로 보내 분석합니다. 분석 결과는 본 앱에 저장되어 위 4조 범위로 공개됩니다.
+본 앱은 Gemini API 무료 이용 등급을 쓰며, 이 등급에서는 Google이 서비스 개선을 위해 입력된 내용을 이용할 수 있습니다. 사진에 사람의 얼굴, 문서, 화면 등 다른 정보가 담기지 않도록 식판만 찍어 주십시오.</p>
+<h2>6. 처리 위탁 및 국외 이전</h2>
+<p>운영자는 아래 업체에 개인정보 처리를 맡깁니다. 이전받는 자: Google LLC (미국)
+
+• Firebase Authentication: 로그인
+• Cloud Firestore(서울 리전): 닉네임, 회사 정보, 글·댓글·반응 등
+• Cloud Storage(미국 리전): 식단 사진
+• Cloud Functions(서울 리전): 인증, 업로드, 알림 처리
+• Firebase Cloud Messaging: 알림 발송
+• Gemini API: AI 식판 평가와 콘텐츠 검사
+• Google AdMob: 광고 제공
+
+이전 시점: 서비스 이용 시 수시로 네트워크를 통해 전송
+보유 기간: 11조와 같습니다</p>
+<h2>7. 광고</h2>
+<p>본 앱은 Google AdMob 광고를 보여주며, 보상형 광고를 끝까지 보면 다른 회사의 지난 식단을 24시간 볼 수 있습니다. AdMob은 광고 제공과 측정을 위해 광고 ID, 기기·앱 정보, 대략적인 위치(IP 기반) 등을 처리할 수 있습니다.
+자세한 내용은 Google 개인정보처리방침(<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>)을 확인해 주십시오. 기기 설정에서 광고 ID를 재설정하거나 맞춤 광고를 끌 수 있습니다. 유럽경제지역·영국 이용자에게는 맞춤 광고 동의를 따로 묻습니다.</p>
+<h2>8. 알림 권한</h2>
+<p>댓글·답글, 관심 회사 새 식단, 점심 알림을 보내기 위해 알림 권한을 요청합니다. 권한을 거절해도 다른 기능은 이용할 수 있으며, 점심 알림은 마이 화면에서 끌 수 있습니다.</p>
+<h2>9. 만 14세 미만 아동</h2>
+<p>본 앱은 직장인을 위한 서비스로 만 14세 미만은 가입할 수 없습니다. 만 14세 미만의 가입 사실을 알게 되면 해당 계정을 삭제합니다.</p>
+<h2>10. 정보의 보유 및 삭제</h2>
+<p>• 앱에서 &quot;마이 &gt; 계정 삭제&quot;를 누르면 즉시 삭제합니다: 계정, 닉네임, 회사 인증 기록, 올린 사진과 글, 반응, 관심 회사, 차단 목록, 알림 토큰, 통계
+• 남긴 댓글은 다른 사람의 답글 흐름을 지키기 위해 내용을 지우고 작성자를 &quot;탈퇴한 사용자&quot;로 바꿉니다.
+• 서버의 오류 기록과 백업에는 최대 30일까지 남을 수 있으며 이후 자동으로 지워집니다.
+• 관계 법령에 따라 보관해야 하는 경우 그 기간 동안 보관합니다.
+앱을 쓸 수 없는 경우의 삭제 요청 방법은 계정 삭제 안내(<a href="https://crayon-go.github.io/cafeteria-docs/account-deletion.html">https://crayon-go.github.io/cafeteria-docs/account-deletion.html</a>)를 확인해 주십시오.</p>
+<h2>11. 이용자의 권리</h2>
+<p>이용자는 언제든지 자신의 개인정보 열람·정정·삭제·처리 정지를 요청할 수 있습니다. 앱에서 직접 계정을 삭제하거나 <a href="mailto:mintchoco.biz@gmail.com">mintchoco.biz@gmail.com</a>로 요청해 주십시오. 요청은 지체 없이 처리합니다.</p>
+<h2>12. 안전성 확보 조치</h2>
+<p>전송 구간 암호화(HTTPS), 데이터베이스 접근 규칙으로 본인 정보만 읽고 쓰도록 제한, 회사 실명·이메일 해시 등 민감 정보는 서버 전용 영역에 분리 보관합니다.</p>
+<h2>13. 방침의 변경</h2>
+<p>이 방침을 바꾸면 시행 7일 전에 이 페이지와 앱에서 알립니다. 이용자의 권리에 중대한 변경이 있으면 30일 전에 알립니다.</p>
+<h2>14. 문의처</h2>
+<p>개인정보 보호 담당: 운영자
+이메일: <a href="mailto:mintchoco.biz@gmail.com">mintchoco.biz@gmail.com</a>
+
+시행일: 2026년 10월 12일</p>
+<nav><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a><a href="account-deletion.html">계정 삭제</a></nav>
+</body>
+</html>
