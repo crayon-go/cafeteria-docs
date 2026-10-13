@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="친구가 보내준 구내식당 사진, 우리회사 구내식당 앱에서 함께 구경해요.">
+  <meta property="og:title" content="우리회사 구내식당 · 공유한 식단">
+  <meta property="og:description" content="너희 회사 오늘 밥은 어때? 공유한 식단을 앱에서 확인해보세요.">
+  <title>공유한 식단 보기 · 우리회사 구내식당</title>
+  <link rel="stylesheet" href="share.css">
+  <script type="module" src="share-links.mjs"></script>
+</head>
+<body>
+  <header><a class="brand" href="index.html">우리회사 구내식당</a></header>
+  <main>
+    <img class="mascot" src="share-mascot.webp" alt="식판 구경을 기다리는 슬기 사원과 로운 대리" width="200" height="200">
+    <h1 id="title">보내준 식판,<br>같이 구경할까요?</h1>
+    <p class="description" id="message">앱에서 같은 식단을 열고<br>메뉴와 다른 사람들의 반응을 확인해보세요.</p>
+    <div class="actions">
+      <a id="open-app" class="primary" hidden>앱에서 식단 보기</a>
+      <a class="secondary" href="https://play.google.com/store/apps/details?id=com.mintchoco.cafeteria">Google Play에서 앱 설치</a>
+      <button id="copy-link" class="copy" type="button" hidden>식단 링크 복사</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <noscript><p class="description">식단을 바로 열려면 브라우저에서 JavaScript를 켜주세요. 앱 설치는 위 버튼으로 할 수 있어요.</p></noscript>
+    <p class="note">앱을 설치한 뒤 이 링크로 돌아와주세요.<br>이미 설치했다면 최신 버전으로 업데이트해주세요.</p>
+  </main>
+  <footer><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a></footer>
+</body>
+</html>
