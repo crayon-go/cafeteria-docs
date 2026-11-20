@@ -1,4 +1,13 @@
-export const STORE_URL = 'https://play.google.com/store/apps/details?id=com.mintchoco.cafeteria';
+/**
+ * Play 스토어 주소에 설치 경로를 붙인다. Play가 이 값을 앱에 넘겨주고, 이용 통계가 첫 실행에 유입 경로로 적는다.
+ * source는 어디서 눌렀는지(share_page, invite_page), campaign은 무엇 때문에 왔는지(card_share, coworker_invite).
+ */
+export function storeUrl(source, campaign) {
+  const referrer = `utm_source=${source}&utm_medium=web&utm_campaign=${campaign}`;
+  return `https://play.google.com/store/apps/details?id=com.mintchoco.cafeteria&referrer=${encodeURIComponent(referrer)}`;
+}
+
+export const STORE_URL = storeUrl('share_page', 'card_share');
 
 export function validCardId(id) {
   return typeof id === 'string' && id.length > 0 && id.length <= 250 && id !== '.' && id !== '..' && !/[/\\\x00-\x1f\x7f]/.test(id);
@@ -20,6 +29,23 @@ export function appUrl(id, userAgent) {
   return `cafeteria://${path}`;
 }
 
+/** 미리보기가 식단마다 달라지는 주소(/c/<식단 ID>)를 쓰는 사이트. 서버 functions/src/share.js SHARE_SITE와 같다. */
+export const SHARE_SITE = 'https://mintchoco-cafeteria.web.app';
+
+/**
+ * 남에게 다시 보낼 식단 주소. 새 사이트에서는 미리보기가 붙는 /c/<식단 ID> 주소를,
+ * 옛 사이트(GitHub Pages)에서는 지금 페이지 주소에 식단 ID만 남긴 주소를 준다.
+ */
+export function canonicalLink(href, id) {
+  if (!validCardId(id)) throw new Error('Invalid card ID');
+  const url = new URL(href);
+  if (url.origin === SHARE_SITE) return `${SHARE_SITE}/c/${encodeURIComponent(id)}`;
+  url.search = '';
+  url.hash = '';
+  url.searchParams.set('card', id);
+  return url.href;
+}
+
 export function initSharePage(document, location, navigator) {
   const id = cardIdFromUrl(location.href);
   const open = document.querySelector('#open-app');
@@ -27,6 +53,9 @@ export function initSharePage(document, location, navigator) {
   const message = document.querySelector('#message');
   const status = document.querySelector('#status');
   const copy = document.querySelector('#copy-link');
+  // 설치 버튼에도 설치 경로를 붙인다(HTML에는 경로 없는 주소가 들어 있다).
+  const install = document.querySelector('#install');
+  if (install) install.href = STORE_URL;
   if (!id) {
     title.textContent = '식단 주소를 확인해주세요';
     message.textContent = '링크가 빠졌거나 올바르지 않아요. 사진을 보내준 분에게 링크를 다시 받아주세요.';
@@ -43,11 +72,7 @@ export function initSharePage(document, location, navigator) {
   copy.hidden = false;
   copy.addEventListener('click', async () => {
     try {
-      const canonical = new URL(location.href);
-      canonical.search = '';
-      canonical.hash = '';
-      canonical.searchParams.set('card', id);
-      await navigator.clipboard.writeText(canonical.href);
+      await navigator.clipboard.writeText(canonicalLink(location.href, id));
       status.textContent = '식단 링크를 복사했어요.';
     } catch {
       status.textContent = '주소창의 링크를 길게 눌러 복사해주세요.';
