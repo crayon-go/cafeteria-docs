@@ -57,9 +57,10 @@ export function initSharePage(document, location, navigator) {
 
 // ---- 공유한 식단 미리보기
 // 앱이 없는 사람과 아이폰 사용자도 받은 식단의 사진과 점수를 바로 볼 수 있게 한다. 설치 버튼만 있으면 그냥 닫는다.
-// 식단 카드는 누구나 읽을 수 있는 공개 데이터라(firestore.rules) 로그인 없이 읽는다.
+// 식단 한 장의 공개 값만 돌려주는 서버 함수(functions/src/share.js sharedCard)를 부른다.
+// 예전에는 데이터베이스를 직접 읽었는데, 데이터베이스에 앱 확인(App Check)을 강제하면 앱이 아닌 곳의 읽기가 막힌다.
 
-const PROJECT_ID = 'mintchoco-cafeteria';
+const CARD_API = 'https://asia-northeast3-mintchoco-cafeteria.cloudfunctions.net/sharedCard';
 const MEAL_LABELS = { breakfast: '조식', lunch: '중식', dinner: '석식' };
 
 /** 공유 페이지에서 사진을 보여주는 기간(일). 앱이 공유 링크로 받은 식단을 열어 두는 48시간과 맞춘다. */
@@ -67,7 +68,7 @@ export const PREVIEW_DAYS = 2;
 
 export function cardApiUrl(id) {
   if (!validCardId(id)) throw new Error('Invalid card ID');
-  return `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/mealCards/${encodeURIComponent(id)}`;
+  return `${CARD_API}?card=${encodeURIComponent(id)}`;
 }
 
 /** 한국 시간 기준 YYYY-MM-DD. */
@@ -81,22 +82,20 @@ function addDays(dateKey, days) {
   return d.toISOString().slice(0, 10);
 }
 
-/** Firestore REST 응답을 화면에 쓸 값으로 바꾼다. 필요한 값이 없으면 null. */
-export function parseCard(doc) {
-  const f = doc?.fields;
-  const text = (key) => f?.[key]?.stringValue ?? '';
-  const imageUrl = text('coverImageUrl');
-  if (!f || !text('companyDisplay') || !/^https:\/\//.test(imageUrl) || !/^\d{4}-\d{2}-\d{2}$/.test(text('dateKey'))) return null;
-  const score = Number(f.score?.integerValue ?? f.score?.doubleValue);
+/** 서버가 준 식단 값을 화면에 쓸 값으로 바꾼다. 필요한 값이 없거나 모양이 다르면 null. */
+export function parseCard(data) {
+  const text = (key) => (typeof data?.[key] === 'string' ? data[key] : '');
+  const imageUrl = text('imageUrl');
+  if (!text('company') || !/^https:\/\//.test(imageUrl) || !/^\d{4}-\d{2}-\d{2}$/.test(text('dateKey'))) return null;
   const corner = text('corner');
   const meal = MEAL_LABELS[text('meal')] ?? '';
   return {
-    company: text('companyDisplay'),
+    company: text('company'),
     imageUrl,
     dateKey: text('dateKey'),
     mealCorner: corner && corner !== '기본' ? `${meal} ${corner}` : meal,
-    score: Number.isFinite(score) ? Math.round(score) : null,
-    menus: (f.menus?.arrayValue?.values ?? []).map((v) => v.stringValue).filter(Boolean).slice(0, 6),
+    score: typeof data.score === 'number' && Number.isFinite(data.score) ? Math.round(data.score) : null,
+    menus: (Array.isArray(data.menus) ? data.menus : []).filter((m) => typeof m === 'string' && m).slice(0, 6),
   };
 }
 
