@@ -15,7 +15,16 @@
 <body>
   <header><a class="brand" href="index.html">모두의 구내식당</a></header>
   <main>
-    <img class="mascot" src="share-mascot.webp" alt="식단 구경을 기다리는 두 직장인 캐릭터" width="200" height="200">
+    <img class="mascot" id="mascot" src="share-mascot.webp" alt="식단 구경을 기다리는 두 직장인 캐릭터" width="200" height="200">
+    <section class="card" id="card" hidden aria-label="공유한 식단">
+      <img class="card-photo" id="card-photo" alt="" width="480" height="360">
+      <div class="card-body">
+        <p class="card-company" id="card-company"></p>
+        <p class="card-meta" id="card-meta"></p>
+        <p class="card-score" id="card-score" hidden></p>
+        <p class="card-menus" id="card-menus"></p>
+      </div>
+    </section>
     <h1 id="title">보내준 식단,<br>같이 구경할까요?</h1>
     <p class="description" id="message">앱에서 같은 식단을 열고<br>메뉴와 다른 사람들의 반응을 확인해보세요.</p>
     <div class="actions">
